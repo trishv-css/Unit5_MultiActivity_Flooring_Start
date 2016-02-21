@@ -1,9 +1,21 @@
+//===============================================
+// Project name: Unit5_MultiActivity_Flooring_Start
+// Author: Trish Valeri
+// Contributors: CIS 3334
+// Date: 2/19/16, 2/20/16
+// Purpose: calculate the flooring needed based on width and length. (pass into a second activity
+//          by the use of an intent.
+//===============================================
+
 package edu.css.cis3334.unit5_multiactivity_flooring_start;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -35,5 +47,31 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View view) {
+        //creates new intent
+        Intent i = new Intent(this, ResultActivity.class);
+
+        //assigns variable to etWidth
+        final EditText editWidth = (EditText)
+                findViewById(R.id.etWidth);
+        //assigns variable to the text retrieved from etWidth edit text field.
+        //also retrieves the user input and gets its string value.
+        String str_width = editWidth.getText().toString();
+        //puts the string into "extras" to get bundled.
+        i.putExtra("wString", str_width);
+
+        //assigns variable to etLength
+        final EditText editLength = (EditText)
+                findViewById(R.id.etLength);
+        //assigns variable to the text retrieved from etLength edit text field.
+        //also retrieves the user input and gets its string value.
+        String str_length = editLength.getText().toString();
+        //puts the string into "extras" to get bundled.
+        i.putExtra("lString", str_length);
+
+        //starts intent, passing the bundled object as argument
+        startActivity(i);
     }
 }
